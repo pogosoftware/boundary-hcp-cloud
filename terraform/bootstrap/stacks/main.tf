@@ -40,3 +40,25 @@ resource "hcp_iam_workload_identity_provider" "stacks_identity_provider" {
 
   conditional_access = "jwt_claims.sub matches `${local.sub_regex}`"
 }
+
+####################################################################################################
+### VARIABLE SETS
+####################################################################################################
+module "credentials_variable_set" {
+  source  = "pogosoftware/tfe/tfe//modules/variable-set"
+  version = "3.0.3"
+
+  name        = format("%s - Credentials", local.name)
+  description = "Credentials"
+
+  variables = {
+    hcp_workload_identity_provider = {
+      value    = hcp_iam_workload_identity_provider.stacks_identity_provider.resource_name
+      category = "terraform"
+    },
+    aws_stacks_role_arn = {
+      value    =  aws_iam_role.stacks_role.arn
+      category = "terraform"
+    } 
+  }
+}

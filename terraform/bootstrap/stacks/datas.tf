@@ -3,10 +3,6 @@ data "aws_region" "current" {}
 data "hcp_organization" "current" {}
 data "hcp_project" "current" {}
 
-data "tls_certificate" "tfc_certificate" {
-  url = "https://${var.tfc_hostname}"
-}
-
 data "aws_iam_openid_connect_provider" "tfc" {
   url =  "https://${var.tfc_hostname}"
 }
