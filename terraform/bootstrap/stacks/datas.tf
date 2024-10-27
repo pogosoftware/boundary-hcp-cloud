@@ -164,6 +164,4 @@ data "aws_iam_policy_document" "stacks_role_policy" {
   }
 }
 
-data "hcp_project" "hcp_project" {
-  project = var.hcp_project
-}
+data "hcp_project" "hcp_project" {}
