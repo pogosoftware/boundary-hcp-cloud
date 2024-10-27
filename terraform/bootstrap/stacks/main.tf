@@ -1,13 +1,6 @@
 ####################################################################################################
 ### AWS
 ####################################################################################################
-resource "aws_iam_openid_connect_provider" "stacks_openid_provider" {
-  url            = "https://${var.tfc_hostname}"
-  client_id_list = ["aws.workload.identity"]
-
-  thumbprint_list = [data.tls_certificate.tfc_certificate.certificates[0].sha1_fingerprint]
-}
-
 resource "aws_iam_role" "stacks_role" {
   name               = local.name
   assume_role_policy = data.aws_iam_policy_document.stacks_assume_role_policy.json

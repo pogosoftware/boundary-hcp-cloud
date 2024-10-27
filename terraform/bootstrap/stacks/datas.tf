@@ -7,12 +7,16 @@ data "tls_certificate" "tfc_certificate" {
   url = "https://${var.tfc_hostname}"
 }
 
+data "aws_iam_openid_connect_provider" "tfc" {
+  url =  "https://${var.tfc_hostname}"
+}
+
 data "aws_iam_policy_document" "stacks_assume_role_policy" {
   statement {
     effect = "Allow"
     principals {
       type        = "Federated"
-      identifiers = [aws_iam_openid_connect_provider.stacks_openid_provider.arn]
+      identifiers = [data.aws_iam_openid_connect_provider.tfc.arn]
     }
     actions = ["sts:AssumeRoleWithWebIdentity"]
     condition {
