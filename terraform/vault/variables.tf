@@ -1,20 +1,4 @@
 ####################################################################################################
-### GLOBAL
-####################################################################################################
-variable "bootstrap_workspace_name" {
-  description = "The name of bootstrap workspace"
-  type        = string
-}
-
-####################################################################################################
-### HCP
-####################################################################################################
-variable "hcp_project_id" {
-  description = "The UUID of HCP project"
-  type        = string
-}
-
-####################################################################################################
 ### VAULT
 ####################################################################################################
 variable "vault_ssh_mount_path" {
@@ -32,17 +16,5 @@ variable "vault_ssh_role_name" {
 variable "vault_ssh_default_user" {
   default     = "ubuntu"
   description = "The SSH default user name"
-  type        = string
-}
-
-variable "vault_apps_mount_name" {
-  default     = "apps"
-  description = "The name of Vault mount for apps"
-  type        = string
-}
-
-variable "vault_apps_boundary_secret_name" {
-  default     = "infra/boundary"
-  description = "The name of boundary secret in vault"
   type        = string
 }

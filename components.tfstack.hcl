@@ -25,3 +25,13 @@ component "hcp_cloud" {
     random = provider.random.this
   }
 }
+
+component "vault" {
+  source = "./terraform/vault"
+
+  providers = {
+    vault = provider.vault.this
+  }
+
+  depends_on = [ component.hcp_cloud ]
+}
