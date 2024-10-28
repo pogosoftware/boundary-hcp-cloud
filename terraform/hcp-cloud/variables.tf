@@ -4,6 +4,7 @@
 variable "environment" {
   description = "The Name of environment. Possible values are: `dev`, `stg`, `prd`"
   type        = string
+  ephemeral = true
 }
 
 ####################################################################################################
@@ -12,6 +13,7 @@ variable "environment" {
 variable "hcp_project_id" {
   description = "The UUID of HCP project"
   type        = string
+  ephemeral = true
 }
 
 ####################################################################################################
@@ -103,6 +105,7 @@ variable "peer_destination_cidr" {
 
 variable "peer_vpc_region" {
   type = string
+  ephemeral = true
 }
 
 variable "private_route_table_ids" {
