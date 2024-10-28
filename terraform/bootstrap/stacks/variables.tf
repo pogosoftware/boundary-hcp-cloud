@@ -17,6 +17,6 @@ variable "tfc_hostname" {
 }
 
 variable "tfc_stack" {
-  default = "development"
+  default = "safepass-sentinel"
   type = string
 }
