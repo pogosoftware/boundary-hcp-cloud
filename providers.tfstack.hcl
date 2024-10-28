@@ -32,15 +32,15 @@ provider "aws" "develop" {
   }
 }
 
-// provider "hcp" "this" {
-//   config {
-//     project_id = var.hcp_project_id
+provider "hcp" "this" {
+  config {
+    project_id = var.hcp_project_id
 
-//     workload_identity {
-//       resource_name = var.hcp_workload_identity_provider
-//       token         = var.hcp_token
-//     }
-//   }
-// }
+    workload_identity {
+      resource_name = var.hcp_workload_identity_provider
+      token         = var.hcp_token
+    }
+  }
+}
 
 provider "random" "this" {}
