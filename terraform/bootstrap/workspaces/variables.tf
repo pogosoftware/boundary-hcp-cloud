@@ -40,7 +40,7 @@ variable "auto_apply" {
 }
 
 variable "terraform_version" {
-  default     = "~> 1.9"
+  default     = "~>1.9.0"
   description = "The version of Terraform"
   type        = string
 }
