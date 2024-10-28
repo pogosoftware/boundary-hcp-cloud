@@ -1,7 +1,5 @@
 variable "aws_region" {
-    description = "The name of AWS region"
     type        = string
-    default     = "eu-central-1"
     sensitive   = false
 }
 
@@ -16,7 +14,21 @@ variable "role_arn" {
 
 variable "default_tags" {
   type = map(string)
-  default = {
-    "Environment" = "develop"
-  }
+}
+
+variable "environment" {
+  type = string
+}
+
+variable "hcp_project_id" {
+  type      = string
+}
+
+variable "hcp_token" {
+  type      = string
+  ephemeral = true
+}
+
+variable "hcp_workload_identity_provider" {
+  type = string
 }

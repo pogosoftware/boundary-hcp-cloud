@@ -1,7 +1,19 @@
 required_providers {
   aws = {
     source  = "hashicorp/aws"
-    version = "5.72.1"
+    version = "5.73.0"
+  }
+  hcp = {
+    source  = "hashicorp/hcp"
+    version = "0.97.0"
+  }
+  random = {
+    source  = "hashicorp/random"
+    version = "3.6.3"
+  }
+  vault = {
+    source  = "hashicorp/vault"
+    version = "4.4.0"
   }
 }
 
@@ -19,3 +31,17 @@ provider "aws" "develop" {
     }
   }
 }
+
+provider "hcp" "this" {
+  config {
+    project_id = var.hcp_project_id
+
+    workload_identity {
+      resource_name = var.hcp_workload_identity_provider
+      token         = var.hcp_token
+    }
+  }
+}
+
+provider "vault" "this" {}
+provider "random" "this" {}
