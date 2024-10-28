@@ -55,7 +55,7 @@ resource "aws_security_group_rule" "allow_22_egress" {
   protocol          = "tcp"
   from_port         = 22
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = local.ecs_cluster_sg_id
+  security_group_id = var.ecs_cluster_sg_id
 }
 
 resource "aws_security_group_rule" "allow_443_egress" {
@@ -64,7 +64,7 @@ resource "aws_security_group_rule" "allow_443_egress" {
   protocol          = "tcp"
   from_port         = 443
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = local.ecs_cluster_sg_id
+  security_group_id = var.ecs_cluster_sg_id
 }
 
 resource "aws_security_group_rule" "allow_8200_egress" {
@@ -73,7 +73,7 @@ resource "aws_security_group_rule" "allow_8200_egress" {
   protocol          = "tcp"
   from_port         = 8200
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = local.ecs_cluster_sg_id
+  security_group_id = var.ecs_cluster_sg_id
 }
 
 ########################################################################################################################
@@ -159,8 +159,8 @@ resource "aws_ecs_service" "this" {
   }
 
   network_configuration {
-    security_groups  = [local.ecs_cluster_sg_id]
-    subnets          = [local.ecs_cluster_private_subnet_id]
+    security_groups  = [var.ecs_cluster_sg_id]
+    subnets          = [var.ecs_cluster_private_subnet_id]
     assign_public_ip = false
   }
 
@@ -172,10 +172,10 @@ resource "aws_ecs_service" "this" {
 ########################################################################################################################
 ## Attach agent pool to a workspaces
 ########################################################################################################################
-resource "tfe_workspace_settings" "agents" {
-  for_each = local.execution_mode_agent_workspaces
+# resource "tfe_workspace_settings" "agents" {
+#   for_each = local.execution_mode_agent_workspaces
 
-  workspace_id   = each.value
-  execution_mode = "agent"
-  agent_pool_id  = tfe_agent_pool.this.id
-}
+#   workspace_id   = each.value
+#   execution_mode = "agent"
+#   agent_pool_id  = tfe_agent_pool.this.id
+# }

@@ -2,29 +2,11 @@
 ### GLOBAL
 ####################################################################################################
 variable "environment" {
-  default     = "dev"
   description = "The Name of environment. Possible values are: `dev`, `stg`, `prd`"
   type        = string
 }
 
-variable "bootstrap_workspace_name" {
-  description = "The name of bootstrap workspace"
-  type        = string
-}
-
-####################################################################################################
-### HCP
-####################################################################################################
-variable "hcp_project_id" {
-  description = "The UUID of HCP project"
-  type        = string
-}
-
-####################################################################################################
-### AWS
-####################################################################################################
 variable "aws_region" {
-  default     = "eu-central-1"
   description = "The Name of AWS region"
   type        = string
 }
