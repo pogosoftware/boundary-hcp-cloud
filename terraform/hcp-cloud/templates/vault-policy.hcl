@@ -15,7 +15,7 @@ path "apps/+/infra/boundary" {
 }
 
 path "sys/mounts/ssh-client-signer" {
-  capabilities = ["create", "update", "delete"]
+  capabilities = ["create", "read", "update", "delete"]
 }
 
 path "ssh-client-signer/config/ca" {

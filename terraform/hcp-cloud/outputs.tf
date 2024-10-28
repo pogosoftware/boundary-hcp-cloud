@@ -30,22 +30,8 @@ output "hcp_vault_private_endpoint_url" {
   value       = hcp_vault_cluster.this.vault_private_endpoint_url
 }
 
-output "hcp_vault_env_namespace_path" {
-  description = "The path to the environment namespace"
-  value       = vault_namespace.env.path
+output "hcp_vault_admin_token" {
+  value     =  hcp_vault_cluster_admin_token.this.token
+  sensitive = true
 }
 
-output "hcp_vault_env_namespace_path_fq" {
-  description = "The fully qualified path to the environment namespace"
-  value       = vault_namespace.env.path_fq
-}
-
-output "hcp_vault_devops_namespace_path" {
-  description = "The path to the devops namespace"
-  value       = vault_namespace.devops.path
-}
-
-output "hcp_vault_devops_namespace_path_fq" {
-  description = "The fully qualified path to the devops namespace"
-  value       = vault_namespace.devops.path_fq
-}
