@@ -13,14 +13,6 @@ variable "bootstrap_workspace_name" {
 }
 
 ####################################################################################################
-### HCP CLOUD
-####################################################################################################
-variable "hcp_project_id" {
-  description = "The UUID of HCP project"
-  type        = string
-}
-
-####################################################################################################
 ### HCP VAULT CLUSTER
 ####################################################################################################
 variable "hcp_cloud_hvn_id" {
@@ -83,12 +75,6 @@ variable "boundary_tier" {
 ####################################################################################################
 ### HCP -> AWS PEERING
 ####################################################################################################
-variable "aws_region" {
-  default     = "eu-central-1"
-  description = "The Name of AWS region"
-  type        = string
-}
-
 variable "peering_id" {
   default     = "safepass-sentinel"
   description = "The ID of the network peering"
