@@ -1,7 +1,6 @@
 variable "aws_region" {
   type      = string
   sensitive = false
-  ephemeral = true
 }
 
 variable "identity_token" {
@@ -24,7 +23,6 @@ variable "environment" {
 
 variable "hcp_project_id" {
   type      = string
-  ephemeral = true
 }
 
 variable "hcp_token" {
