@@ -43,5 +43,4 @@ provider "hcp" "this" {
   }
 }
 
-provider "vault" "this" {}
 provider "random" "this" {}
