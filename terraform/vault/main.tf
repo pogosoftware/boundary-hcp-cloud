@@ -23,13 +23,13 @@ resource "vault_ssh_secret_backend_ca" "ssh" {
 resource "vault_policy" "boundary_controller" {
   name = "boundary-controller"
 
-  policy = file("templates/boundary-controller-policy.hcl")
+  policy = file("./templates/boundary-controller-policy.hcl")
 }
 
 resource "vault_policy" "ssh" {
   name = "ssh"
 
-  policy = templatefile("templates/ssh-policy.hcl", {
+  policy = templatefile("./templates/ssh-policy.hcl", {
     vault_ssh_mount_path = var.vault_ssh_mount_path,
     vault_ssh_role_name  = var.vault_ssh_role_name
   })
