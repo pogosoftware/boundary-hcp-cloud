@@ -1,4 +1,4 @@
-# data "hcp_organization" "this" {}
+data "hcp_organization" "this" {}
 
 ####################################################################################################
 ### REMOTE STATES
