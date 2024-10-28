@@ -48,8 +48,8 @@ module "credentials_variable_set" {
   source  = "pogosoftware/tfe/tfe//modules/variable-set"
   version = "3.0.3"
 
-  name        = format("%s - Credentials", local.name)
-  description = "Credentials"
+  name        = local.name
+  description = "Variables used by stacks resources"
 
   variables = {
     hcp_workload_identity_provider = {
@@ -57,8 +57,20 @@ module "credentials_variable_set" {
       category = "terraform"
     },
     aws_stacks_role_arn = {
-      value    =  aws_iam_role.stacks_role.arn
+      value    = aws_iam_role.stacks_role.arn
       category = "terraform"
-    } 
+    },
+    hcp_project_id = {
+      value    = var.hcp_project_id
+      category = "terraform"
+    },
+    environment = {
+      value    = var.environment
+      category = "terraform"
+    },
+    aws_region = {
+      value    = var.aws_region
+      category = "terraform"
+    }
   }
 }

@@ -1,10 +1,13 @@
 data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
+
 data "hcp_organization" "current" {}
-data "hcp_project" "current" {}
+data "hcp_project" "current" {
+  project = var.hcp_project_id
+}
 
 data "aws_iam_openid_connect_provider" "tfc" {
-  url =  "https://${var.tfc_hostname}"
+  url = "https://${var.tfc_hostname}"
 }
 
 data "aws_iam_policy_document" "stacks_assume_role_policy" {
@@ -23,7 +26,7 @@ data "aws_iam_policy_document" "stacks_assume_role_policy" {
     condition {
       test     = "StringLike"
       variable = "${var.tfc_hostname}:sub"
-      values = ["organization:${local.tfc_organization}:project:${local.tfc_project}:stack:*:*"]
+      values   = ["organization:${local.tfc_organization}:project:${local.tfc_project}:stack:*:*"]
     }
   }
 }

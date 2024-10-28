@@ -4,7 +4,10 @@ variable "aws_region" {
 }
 
 variable "environment" {
-  default = "dev"
+  type = string
+}
+
+variable "hcp_project_id" {
   type = string
 }
 
