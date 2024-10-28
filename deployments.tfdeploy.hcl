@@ -21,5 +21,6 @@ deployment "deployment" {
     hcp_workload_identity_provider = store.varset.dev.hcp_workload_identity_provider
     environment                    = "dev"
     default_tags                   = { Environment = "Development" }
+    tfe_token                      = store.varset.dev.tfe_token
   }
 }

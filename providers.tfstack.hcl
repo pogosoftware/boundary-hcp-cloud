@@ -24,7 +24,7 @@ required_providers {
     version = "1.2.0"
   }
   tfe = {
-    source = "hashicorp/tfe"
+    source  = "hashicorp/tfe"
     version = "0.59.0"
   }
 }
@@ -70,6 +70,11 @@ provider "hcp" "this" {
 //   }
 // }
 
-provider "tfe" "this" {}
+provider "tfe" "this" {
+  config {
+    token = var.tfe_token
+  }
+}
+
 provider "random" "this" {}
 provider "tls" "this" {}

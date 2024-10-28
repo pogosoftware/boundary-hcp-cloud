@@ -18,14 +18,19 @@ variable "default_tags" {
 }
 
 variable "environment" {
-  type      = string
+  type = string
 }
 
 variable "hcp_project_id" {
-  type      = string
+  type = string
 }
 
 variable "hcp_token" {
+  type      = string
+  ephemeral = true
+}
+
+variable "tfe_token" {
   type      = string
   ephemeral = true
 }
