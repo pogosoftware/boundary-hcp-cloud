@@ -1,10 +1,22 @@
-data "hcp_organization" "this" {}
+data "hcp_organization" "current" {}
+data "hcp_project" "current" {}
+
 data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 data "tfe_project" "this" {
-  name         = var.tfe_project_name
-  organization = data.hcp_organization.this.name
+  name         = local.hcp_project_name
+  organization = local.hcp_organization_name
+}
+
+data "tfe_variable_set" "aws_common" {
+  name         = format("%s - %s - AWS Common", local.hcp_project_name, var.environment)
+  organization = local.hcp_organization_name
+}
+
+data "tfe_variable_set" "hcp_credentials" {
+  name         = format("%s - %s - HCP Credentials", local.hcp_project_name, var.environment)
+  organization = local.hcp_organization_name
 }
 
 ####################################################################################################
@@ -51,7 +63,8 @@ data "aws_iam_policy_document" "network_plan" {
       "ec2:DescribeSecurityGroups",
       "ec2:DescribeSubnets",
       "ec2:DescribeAddresses",
-      "ec2:DescribeNatGateways"
+      "ec2:DescribeNatGateways",
+      "ec2:DescribeAddressesAttribute"
     ]
 
     resources = ["*"]
