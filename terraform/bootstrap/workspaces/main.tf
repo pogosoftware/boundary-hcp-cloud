@@ -87,15 +87,16 @@ module "network_workspace" {
   source  = "pogosoftware/tfe/tfe//modules/workspace"
   version = "3.0.3"
 
-  create_workspace   = local.create_network_workspace
-  name               = local.network_workspace_name
-  project_id         = data.tfe_project.this.id
-  working_directory  = "./terraform/network"
-  trigger_patterns   = ["./terraform/network/*.tf"]
-  vcs_repos          = var.vcs_repo
-  tags               = ["aws", var.environment]
-  allow_destroy_plan = var.allow_destroy_plan
-  auto_apply         = var.auto_apply
+  create_workspace           = local.create_network_workspace
+  name                       = local.network_workspace_name
+  project_id                 = data.tfe_project.this.id
+  working_directory          = "./terraform/network"
+  trigger_patterns           = ["./terraform/network/*.tf"]
+  vcs_repos                  = var.vcs_repo
+  tags                       = ["aws", var.environment]
+  allow_destroy_plan         = var.allow_destroy_plan
+  auto_apply                 = var.auto_apply
+  terraform_reqiured_version = var.terraform_version
 
   workspace_variables = {
     TFC_AWS_PLAN_ROLE_ARN = {
@@ -119,15 +120,16 @@ module "hcp_cloud_workspace" {
   source  = "pogosoftware/tfe/tfe//modules/workspace"
   version = "3.0.3"
 
-  create_workspace   = local.create_hcp_cloud_workspace
-  name               = local.hcp_cloud_workspace_name
-  project_id         = data.tfe_project.this.id
-  working_directory  = "./terraform/hcp-cloud"
-  trigger_patterns   = ["./terraform/hcp-cloud/*.tf"]
-  vcs_repos          = var.vcs_repo
-  tags               = ["aws", "hcp", "random", "vault", "tfe", var.environment]
-  allow_destroy_plan = var.allow_destroy_plan
-  auto_apply         = var.auto_apply
+  create_workspace           = local.create_hcp_cloud_workspace
+  name                       = local.hcp_cloud_workspace_name
+  project_id                 = data.tfe_project.this.id
+  working_directory          = "./terraform/hcp-cloud"
+  trigger_patterns           = ["./terraform/hcp-cloud/*.tf"]
+  vcs_repos                  = var.vcs_repo
+  tags                       = ["aws", "hcp", "random", "vault", "tfe", var.environment]
+  allow_destroy_plan         = var.allow_destroy_plan
+  auto_apply                 = var.auto_apply
+  terraform_reqiured_version = var.terraform_version
 
   workspace_variables = {
     TFC_AWS_PLAN_ROLE_ARN = {
@@ -154,15 +156,16 @@ module "vault_workspace" {
   source  = "pogosoftware/tfe/tfe//modules/workspace"
   version = "3.0.3"
 
-  create_workspace   = local.create_vault_workspace
-  name               = local.vault_workspace_name
-  project_id         = data.tfe_project.this.id
-  working_directory  = "./terraform/vault"
-  trigger_patterns   = ["./terraform/vault/*.tf"]
-  vcs_repos          = var.vcs_repo
-  tags               = ["hcp", "vault", "utils", var.environment]
-  allow_destroy_plan = var.allow_destroy_plan
-  auto_apply         = var.auto_apply
+  create_workspace           = local.create_vault_workspace
+  name                       = local.vault_workspace_name
+  project_id                 = data.tfe_project.this.id
+  working_directory          = "./terraform/vault"
+  trigger_patterns           = ["./terraform/vault/*.tf"]
+  vcs_repos                  = var.vcs_repo
+  tags                       = ["hcp", "vault", "utils", var.environment]
+  allow_destroy_plan         = var.allow_destroy_plan
+  auto_apply                 = var.auto_apply
+  terraform_reqiured_version = var.terraform_version
 
   workspace_variables = {
     bootstrap_workspace_name = {
@@ -180,15 +183,16 @@ module "boundary_workspace" {
   source  = "pogosoftware/tfe/tfe//modules/workspace"
   version = "3.0.3"
 
-  create_workspace   = local.create_boundary_workspace
-  name               = local.boundary_workspace_name
-  project_id         = data.tfe_project.this.id
-  working_directory  = "./terraform/boundary"
-  trigger_patterns   = ["./terraform/boundary/*.tf"]
-  vcs_repos          = var.vcs_repo
-  tags               = ["aws", "boundary", "hcp", "tls", "vault", var.environment]
-  allow_destroy_plan = var.allow_destroy_plan
-  auto_apply         = var.auto_apply
+  create_workspace           = local.create_boundary_workspace
+  name                       = local.boundary_workspace_name
+  project_id                 = data.tfe_project.this.id
+  working_directory          = "./terraform/boundary"
+  trigger_patterns           = ["./terraform/boundary/*.tf"]
+  vcs_repos                  = var.vcs_repo
+  tags                       = ["aws", "boundary", "hcp", "tls", "vault", var.environment]
+  allow_destroy_plan         = var.allow_destroy_plan
+  auto_apply                 = var.auto_apply
+  terraform_reqiured_version = var.terraform_version
 
   workspace_variables = {
     TFC_AWS_PLAN_ROLE_ARN = {
@@ -210,15 +214,16 @@ module "tfc_agent_workspace" {
   source  = "pogosoftware/tfe/tfe//modules/workspace"
   version = "3.0.3"
 
-  create_workspace   = local.create_tfc_agent_workspace
-  name               = local.tfc_agent_workspace_name
-  project_id         = data.tfe_project.this.id
-  working_directory  = "./terraform/tfc-agent"
-  trigger_patterns   = ["./terraform/tfc-agent/*.tf"]
-  vcs_repos          = var.vcs_repo
-  tags               = ["sps", "aws", var.environment]
-  allow_destroy_plan = var.allow_destroy_plan
-  auto_apply         = var.auto_apply
+  create_workspace           = local.create_tfc_agent_workspace
+  name                       = local.tfc_agent_workspace_name
+  project_id                 = data.tfe_project.this.id
+  working_directory          = "./terraform/tfc-agent"
+  trigger_patterns           = ["./terraform/tfc-agent/*.tf"]
+  vcs_repos                  = var.vcs_repo
+  tags                       = ["sps", "aws", var.environment]
+  allow_destroy_plan         = var.allow_destroy_plan
+  auto_apply                 = var.auto_apply
+  terraform_reqiured_version = var.terraform_version
 
   workspace_variables = {
     TFC_AWS_PLAN_ROLE_ARN = {

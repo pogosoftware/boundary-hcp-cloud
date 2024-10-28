@@ -38,3 +38,9 @@ variable "auto_apply" {
   description = "Determinate to auto apply changes or not"
   type        = bool
 }
+
+variable "terraform_version" {
+  default     = "~> 1.9"
+  description = "The version of Terraform"
+  type        = string
+}
