@@ -46,6 +46,7 @@ provider "hcp" "this" {
 provider "vault" "this" {
   config {
     address = component.hcp_cloud.hcp_vault_private_endpoint_url
+    token = component.hcp_cloud.hcp_vault_admin_token
   }
 }
 

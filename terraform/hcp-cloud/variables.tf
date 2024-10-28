@@ -48,7 +48,7 @@ variable "vault_cluster_id" {
 }
 
 variable "vault_public_endpoint" {
-  default     = false
+  default     = true
   description = "Determinates to set public endpoint or not"
   type        = bool
 }
