@@ -2,21 +2,7 @@
 ### GLOBAL
 ####################################################################################################
 variable "environment" {
-  default     = "dev"
   description = "The Name of environment. Possible values are: `dev`, `stg`, `prd`"
-  type        = string
-}
-
-variable "bootstrap_workspace_name" {
-  description = "The name of bootstrap workspace"
-  type        = string
-}
-
-####################################################################################################
-### HCP
-####################################################################################################
-variable "hcp_project_id" {
-  description = "The UUID of HCP project"
   type        = string
 }
 
@@ -55,12 +41,6 @@ variable "sync_interval_seconds" {
 ####################################################################################################
 ### AWS
 ####################################################################################################
-variable "aws_region" {
-  default     = "eu-central-1"
-  description = "The Name of AWS region"
-  type        = string
-}
-
 variable "boundary_ec2_workers_egress_name" {
   default     = "boundary-egress-worker"
   description = "The name of Boundary egress worker"

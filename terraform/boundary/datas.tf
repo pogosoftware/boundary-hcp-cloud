@@ -1,58 +1,21 @@
-data "hcp_organization" "this" {}
-
-####################################################################################################
-### REMOTE STATES
-####################################################################################################
-data "terraform_remote_state" "bootstrap" {
-  backend = "remote"
-
-  config = {
-    organization = data.hcp_organization.this.name
-    workspaces = {
-      name = var.bootstrap_workspace_name
-    }
+data "aws_iam_policy_document" "boudary_describe_instances" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:DescribeInstances"
+    ]
+    resources = ["*"]
   }
-}
 
-data "terraform_remote_state" "hcp_cloud" {
-  backend = "remote"
-
-  config = {
-    organization = data.hcp_organization.this.name
-    workspaces = {
-      name = data.terraform_remote_state.bootstrap.outputs.workspaces["hcp_cloud"].name
-    }
+  statement {
+    effect = "Allow"
+    actions = [
+      "iam:GetUser",
+      "iam:CreateAccessKey",
+      "iam:DeleteAccessKey"
+    ]
+    resources = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/boundary"]
   }
-}
-
-data "terraform_remote_state" "vault" {
-  backend = "remote"
-
-  config = {
-    organization = data.hcp_organization.this.name
-    workspaces = {
-      name = data.terraform_remote_state.bootstrap.outputs.workspaces["vault"].name
-    }
-  }
-}
-
-data "terraform_remote_state" "network" {
-  backend = "remote"
-
-  config = {
-    organization = data.hcp_organization.this.name
-    workspaces = {
-      name = data.terraform_remote_state.bootstrap.outputs.workspaces["network"].name
-    }
-  }
-}
-
-####################################################################################################
-### VAULT SECRETS
-####################################################################################################
-data "vault_kv_secret_v2" "boundary" {
-  mount = local.boundary_vault_mount_name
-  name  = local.boundary_vault_secret_name
 }
 
 ####################################################################################################

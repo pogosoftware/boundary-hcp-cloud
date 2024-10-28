@@ -1,4 +1,31 @@
 ####################################################################################################
+### IAM USERS
+####################################################################################################
+module "boundary_describe_instances_policy" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-policy"
+  version = "5.37.1"
+
+  create_policy = true
+  name          = "boundary"
+
+  policy = data.aws_iam_policy_document.boudary_describe_instances.json
+}
+
+module "boundary_user" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
+  version = "5.37.1"
+
+  create_user = true
+  name        = "boundary"
+
+  create_iam_access_key         = true
+  create_iam_user_login_profile = false
+  policy_arns = [
+    module.boundary_describe_instances_policy.arn
+  ]
+}
+
+####################################################################################################
 ### BOUNDARY WORKER
 ####################################################################################################
 resource "boundary_worker" "ec2_egress_worker" {
@@ -61,7 +88,6 @@ resource "aws_instance" "ec2_egress_worker" {
 
   tags = {
     Name          = local.ec2_egress_worker_name
-    ProjectID     = var.hcp_project_id
     Environment   = var.environment
     InstanceGroup = "EC2_Egress_Worker"
   }
