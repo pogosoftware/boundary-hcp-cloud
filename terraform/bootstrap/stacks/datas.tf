@@ -167,4 +167,145 @@ data "aws_iam_policy_document" "stacks_role_policy" {
       "arn:aws:ec2:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:route-table/*"
     ]
   }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ssm:GetParameter",
+      "ssm:GetParameters",
+      "ssm:ListTagsForResource"
+    ]
+
+    resources = [
+      "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/secret/terraform/agent-token-dev",
+    ]
+
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "iam:GetRole",
+      "iam:ListRolePolicies",
+      "iam:ListAttachedRolePolicies",
+      "iam:GetRolePolicy"
+    ]
+
+    resources = [
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/safepass_sentinel_ecs_dev",
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/tfc_agent_ecs_dev"
+    ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "ecs:DescribeClusters",
+      "ecs:DescribeServices"
+    ]
+
+    resources = [
+      "arn:aws:ecs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:cluster/safepass_sentinel_dev",
+      "arn:aws:ecs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:service/safepass_sentinel_dev/tfc_agent_dev"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ssm:DescribeParameters",
+      "ecs:DescribeTaskDefinition",
+      "ec2:DescribeSecurityGroups",
+      "ec2:DescribeSecurityGroupRules"
+    ]
+
+    resources = [
+      "*",
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ssm:PutParameter",
+      "ssm:GetParameter",
+      "ssm:GetParameters",
+      "ssm:DeleteParameter",
+      "ssm:ListTagsForResource"
+    ]
+
+    resources = [
+      "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/secret/terraform/agent-token-dev",
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "iam:CreateRole",
+      "iam:GetRole",
+      "iam:ListInstanceProfilesForRole",
+      "iam:DeleteRole",
+      "iam:ListRolePolicies",
+      "iam:ListAttachedRolePolicies",
+      "iam:PutRolePolicy",
+      "iam:AttachRolePolicy",
+      "ecs:TagResource",
+      "iam:GetRolePolicy",
+      "iam:DeleteRolePolicy",
+      "iam:PassRole",
+      "iam:DetachRolePolicy"
+    ]
+
+    resources = [
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/safepass_sentinel_ecs_dev",
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/tfc_agent_ecs_dev"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ecs:RegisterTaskDefinition",
+      "ecs:TagResource",
+      "ecs:DescribeClusters",
+      "ecs:DeleteCluster",
+      "ecs:TagResource",
+      "ecs:CreateService",
+      "ecs:DescribeServices",
+      "ecs:UpdateService",
+      "ecs:DeleteService"
+    ]
+
+    resources = [
+      "arn:aws:ecs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:cluster/safepass_sentinel_dev",
+      "arn:aws:ecs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:task-definition/tfc_agent_dev",
+      "arn:aws:ecs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:task-definition/tfc_agent_dev:*",
+      "arn:aws:ecs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:service/safepass_sentinel_dev/tfc_agent_dev"
+    ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:AuthorizeSecurityGroupEgress",
+      "ec2:RevokeSecurityGroupEgress"
+    ]
+
+    resources = [
+      "arn:aws:ec2:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:security-group/*",
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ecs:CreateCluster",
+      "ssm:DescribeParameters",
+      "ecs:DescribeTaskDefinition",
+      "ecs:DeregisterTaskDefinition",
+      "ec2:DescribeSecurityGroups"
+    ]
+
+    resources = [
+      "*",
+    ]
+  }
 }
