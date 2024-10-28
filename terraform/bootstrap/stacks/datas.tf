@@ -229,7 +229,8 @@ data "aws_iam_policy_document" "stacks_role_policy" {
       "ssm:GetParameter",
       "ssm:GetParameters",
       "ssm:DeleteParameter",
-      "ssm:ListTagsForResource"
+      "ssm:ListTagsForResource",
+      "ssm:AddTagsToResource"
     ]
 
     resources = [
@@ -252,7 +253,8 @@ data "aws_iam_policy_document" "stacks_role_policy" {
       "iam:GetRolePolicy",
       "iam:DeleteRolePolicy",
       "iam:PassRole",
-      "iam:DetachRolePolicy"
+      "iam:DetachRolePolicy",
+      "iam:TagRole"
     ]
 
     resources = [
