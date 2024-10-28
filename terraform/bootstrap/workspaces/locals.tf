@@ -17,18 +17,4 @@ locals {
 
   create_tfc_agent_workspace = contains(["dev"], var.environment)
   tfc_agent_workspace_name   = format("%stfc-agent-%s", local.name_prefix, var.environment)
-
-  workspace_ids_for_aws = compact([
-    local.create_network_workspace ? module.network_workspace.id : null,
-    local.create_hcp_cloud_workspace ? module.hcp_cloud_workspace.id : null,
-    local.create_boundary_workspace ? module.boundary_workspace.id : null,
-    local.create_tfc_agent_workspace ? module.tfc_agent_workspace.id : null
-  ])
-
-  workspace_ids_for_hcp = compact([
-    local.create_hcp_cloud_workspace ? module.hcp_cloud_workspace.id : null,
-    local.create_vault_workspace ? module.vault_workspace.id : null,
-    local.create_boundary_workspace ? module.boundary_workspace.id : null,
-    local.create_tfc_agent_workspace ? module.tfc_agent_workspace.id : null
-  ])
 }

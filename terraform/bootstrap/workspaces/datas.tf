@@ -9,16 +9,6 @@ data "tfe_project" "this" {
   organization = local.hcp_organization_name
 }
 
-data "tfe_variable_set" "aws_common" {
-  name         = format("%s - %s - AWS Common", local.hcp_project_name, var.environment)
-  organization = local.hcp_organization_name
-}
-
-data "tfe_variable_set" "hcp_credentials" {
-  name         = format("%s - %s - HCP Credentials", local.hcp_project_name, var.environment)
-  organization = local.hcp_organization_name
-}
-
 ####################################################################################################
 ### AWS POLICIES
 ####################################################################################################

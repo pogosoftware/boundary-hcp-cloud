@@ -235,17 +235,3 @@ module "tfc_agent_workspace" {
     }
   }
 }
-
-resource "tfe_workspace_variable_set" "aws_common" {
-  for_each = toset(local.workspace_ids_for_aws)
-
-  variable_set_id = data.tfe_variable_set.aws_common.id
-  workspace_id    = each.value
-}
-
-resource "tfe_workspace_variable_set" "hcp_credentials" {
-  for_each = toset(local.workspace_ids_for_hcp)
-
-  variable_set_id = data.tfe_variable_set.hcp_credentials.id
-  workspace_id    = each.value
-}
