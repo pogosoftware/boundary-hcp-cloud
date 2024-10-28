@@ -20,7 +20,6 @@ variable "default_tags" {
 
 variable "environment" {
   type      = string
-  ephemeral = true
 }
 
 variable "hcp_project_id" {
