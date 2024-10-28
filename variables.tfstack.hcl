@@ -33,6 +33,7 @@ variable "hcp_token" {
 variable "tfe_token" {
   type      = string
   ephemeral = true
+  sensitive = true
 }
 
 variable "hcp_workload_identity_provider" {
