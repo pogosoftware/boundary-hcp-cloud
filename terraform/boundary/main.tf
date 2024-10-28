@@ -61,7 +61,7 @@ resource "aws_instance" "ec2_egress_worker" {
 
   tags = {
     Name          = local.ec2_egress_worker_name
-    ProjectID     = var.hcp_project_id
+    ProjectID     = data.hcp_project.current.resource_id
     Environment   = var.environment
     InstanceGroup = "EC2_Egress_Worker"
   }
@@ -170,7 +170,7 @@ resource "boundary_host_catalog_plugin" "ec2_egress_workers" {
   plugin_name = "aws"
   attributes_json = jsonencode({
     "disable_credential_rotation" = true,
-    "region"                      = var.aws_region
+    "region"                      = data.aws_region.current.name
   })
 
   secrets_json = jsonencode({
