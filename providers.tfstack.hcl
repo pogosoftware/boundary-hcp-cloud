@@ -55,20 +55,20 @@ provider "hcp" "this" {
   }
 }
 
-provider "vault" "this" {
-  config {
-    address = component.hcp_cloud.hcp_vault_public_endpoint_url
-    token   = component.hcp_cloud.hcp_vault_admin_token
-  }
-}
+// provider "vault" "this" {
+//   config {
+//     address = component.hcp_cloud.hcp_vault_public_endpoint_url
+//     token   = component.hcp_cloud.hcp_vault_admin_token
+//   }
+// }
 
-provider "boundary" "this" {
-  config {
-    addr                   = component.hcp_cloud.hcp_boundary_cluster_url
-    auth_method_login_name = component.hcp_cloud.hcp_boundary_username
-    auth_method_password   = component.hcp_cloud.hcp_boundary_password
-  }
-}
+// provider "boundary" "this" {
+//   config {
+//     addr                   = component.hcp_cloud.hcp_boundary_cluster_url
+//     auth_method_login_name = component.hcp_cloud.hcp_boundary_username
+//     auth_method_password   = component.hcp_cloud.hcp_boundary_password
+//   }
+// }
 
 provider "tfe" "this" {}
 provider "random" "this" {}
