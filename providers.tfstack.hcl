@@ -19,6 +19,14 @@ required_providers {
     source  = "hashicorp/tls"
     version = "4.0.6"
   }
+  boundary = {
+    source  = "hashicorp/boundary"
+    version = "1.2.0"
+  }
+  tfe = {
+    source = "hashicorp/tfe"
+    version = "0.59.0"
+  }
 }
 
 provider "aws" "develop" {
@@ -54,5 +62,14 @@ provider "vault" "this" {
   }
 }
 
+provider "boundary" "this" {
+  config {
+    addr                   = component.hcp_cloud.hcp_boundary_cluster_url
+    auth_method_login_name = component.hcp_cloud.hcp_boundary_username
+    auth_method_password   = component.hcp_cloud.hcp_boundary_password
+  }
+}
+
+provider "tfe" "this" {}
 provider "random" "this" {}
 provider "tls" "this" {}
