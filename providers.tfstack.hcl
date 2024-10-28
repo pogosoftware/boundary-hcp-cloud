@@ -43,4 +43,10 @@ provider "hcp" "this" {
   }
 }
 
+provider "vault" "this" {
+  config {
+    address = component.hcp_cloud.hcp_vault_private_endpoint_url
+  }
+}
+
 provider "random" "this" {}
