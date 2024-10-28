@@ -22,34 +22,34 @@ component "tfc-agent" {
   }
 }
 
-// component "hcp_cloud" {
-//   source = "./terraform/hcp-cloud"
+component "hcp_cloud" {
+  source = "./terraform/hcp-cloud"
 
-//   inputs = {
-//     environment             = var.environment
-//     hcp_project_id          = var.hcp_project_id
-//     peer_vpc_id             = component.network.vpc_id
-//     peer_account_id         = component.network.vpc_owner_id
-//     peer_vpc_region         = var.aws_region
-//     peer_destination_cidr   = component.network.vpc_cidr_block
-//     private_route_table_ids = component.network.private_route_table_ids
-//   }
+  inputs = {
+    environment             = var.environment
+    hcp_project_id          = var.hcp_project_id
+    peer_vpc_id             = component.network.vpc_id
+    peer_account_id         = component.network.vpc_owner_id
+    peer_vpc_region         = var.aws_region
+    peer_destination_cidr   = component.network.vpc_cidr_block
+    private_route_table_ids = component.network.private_route_table_ids
+  }
 
-//   providers = {
-//     aws    = provider.aws.develop
-//     hcp    = provider.hcp.this
-//     random = provider.random.this
-//   }
-// }
+  providers = {
+    aws    = provider.aws.develop
+    hcp    = provider.hcp.this
+    random = provider.random.this
+  }
+}
 
-// component "vault" {
-//   source = "./terraform/vault"
+component "vault" {
+  source = "./terraform/vault"
 
-//   providers = {
-//     vault = provider.vault.this
-//     hcp   = provider.hcp.this
-//     tls   = provider.tls.this
-//   }
+  providers = {
+    vault = provider.vault.this
+    hcp   = provider.hcp.this
+    tls   = provider.tls.this
+  }
 
-//   depends_on = [component.hcp_cloud]
-// }
+  depends_on = [component.hcp_cloud]
+}

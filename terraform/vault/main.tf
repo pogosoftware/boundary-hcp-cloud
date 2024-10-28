@@ -57,13 +57,13 @@ resource "vault_token" "boundary" {
 }
 
 resource "hcp_vault_secrets_secret" "boundary_vault_token" {
-  app_name     = data.hcp_vault_secrets_app.boundary.app_name
+  app_name     = "boundary"
   secret_name  = "vault_token"
   secret_value = vault_token.boundary.client_token
 }
 
 resource "hcp_vault_secrets_secret" "boundary_vault_ca_public_key_openssh" {
-  app_name     = data.hcp_vault_secrets_app.boundary.app_name
+  app_name     = "boundary"
   secret_name  = "vault_ca_public_key_openssh"
   secret_value = tls_private_key.vault.public_key_openssh
 }

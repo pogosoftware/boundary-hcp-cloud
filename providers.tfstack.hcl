@@ -55,12 +55,12 @@ provider "hcp" "this" {
   }
 }
 
-// provider "vault" "this" {
-//   config {
-//     address = component.hcp_cloud.hcp_vault_public_endpoint_url
-//     token   = component.hcp_cloud.hcp_vault_admin_token
-//   }
-// }
+provider "vault" "this" {
+  config {
+    address = component.hcp_cloud.hcp_vault_private_endpoint_url
+    token   = component.hcp_cloud.hcp_vault_admin_token
+  }
+}
 
 // provider "boundary" "this" {
 //   config {
