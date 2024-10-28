@@ -77,6 +77,7 @@ resource "aws_route" "private_to_hvn" {
 
 resource "hcp_vault_secrets_app" "boundary" {
   app_name    = "boundary"
+  description = "HCP Boundry secrets"
 }
 
 resource "hcp_vault_secrets_secret" "boundary_username" {
