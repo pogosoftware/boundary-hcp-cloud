@@ -30,6 +30,11 @@ output "hcp_vault_private_endpoint_url" {
   value       = hcp_vault_cluster.this.vault_private_endpoint_url
 }
 
+output "hcp_vault_public_endpoint_url" {
+  description = "The public URL to HCP Vault cluster"
+  value       = hcp_vault_cluster.this.vault_public_endpoint_url
+}
+
 output "hcp_vault_admin_token" {
   value     =  hcp_vault_cluster_admin_token.this.token
   sensitive = true
