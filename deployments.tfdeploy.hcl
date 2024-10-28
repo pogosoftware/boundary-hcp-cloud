@@ -13,13 +13,13 @@ store "varset" "dev" {
 
 deployment "deployment" {
   inputs = {
-    aws_region                     = store.varset.dev.aws_region
-    hcp_project_id                 = store.varset.dev.hcp_project_id
+    aws_region                     = "eu-central-1"
+    hcp_project_id                 = "d9720027-8bb1-4542-98a3-744da821d0cf"
     role_arn                       = store.varset.dev.aws_stacks_role_arn
     identity_token                 = identity_token.aws.jwt
     hcp_token                      = identity_token.hcp.jwt
     hcp_workload_identity_provider = store.varset.dev.hcp_workload_identity_provider
-    environment                    = store.varset.dev.environment
+    environment                    = "dev"
     default_tags                   = { Environment = "Development" }
   }
 }
