@@ -75,6 +75,22 @@ resource "aws_route" "private_to_hvn" {
   vpc_peering_connection_id = aws_vpc_peering_connection_accepter.peer.vpc_peering_connection_id
 }
 
+resource "hcp_vault_secrets_app" "boundary" {
+  app_name    = "boundary"
+}
+
+resource "hcp_vault_secrets_secret" "boundary_username" {
+  app_name     = hcp_vault_secrets_app.boundary.app_name
+  secret_name  = "username"
+  secret_value = local.boundary_username
+}
+
+resource "hcp_vault_secrets_secret" "boundary_password" {
+  app_name     = hcp_vault_secrets_app.boundary.app_name
+  secret_name  = "password"
+  secret_value = local.boundary_password
+}
+
 ####################################################################################################
 ### VAULT - JWT AUTH ROLE FOR TFC
 ####################################################################################################
