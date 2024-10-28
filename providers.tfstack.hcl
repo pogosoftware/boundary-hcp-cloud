@@ -15,6 +15,10 @@ required_providers {
     source  = "hashicorp/vault"
     version = "4.4.0"
   }
+  tls = {
+    source  = "hashicorp/tls"
+    version = "4.0.6"
+  }
 }
 
 provider "aws" "develop" {
@@ -46,8 +50,9 @@ provider "hcp" "this" {
 provider "vault" "this" {
   config {
     address = component.hcp_cloud.hcp_vault_public_endpoint_url
-    token = component.hcp_cloud.hcp_vault_admin_token
+    token   = component.hcp_cloud.hcp_vault_admin_token
   }
 }
 
 provider "random" "this" {}
+provider "tls" "this" {}

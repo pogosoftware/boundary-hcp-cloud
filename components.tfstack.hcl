@@ -31,7 +31,9 @@ component "vault" {
 
   providers = {
     vault = provider.vault.this
+    hcp   = provider.hcp.this
+    tls   = provider.tls.this
   }
 
-  depends_on = [ component.hcp_cloud ]
+  depends_on = [component.hcp_cloud]
 }
