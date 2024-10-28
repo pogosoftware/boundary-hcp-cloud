@@ -126,7 +126,7 @@ resource "aws_ecs_task_definition" "this" {
           options : {
             awslogs-create-group : "true",
             awslogs-group : "/aws/fargate/service/tfc-agent-ecs"
-            awslogs-region : var.aws_region
+            awslogs-region : data.aws_region.current.name
             awslogs-stream-prefix : "tfc-agent"
           }
         }
