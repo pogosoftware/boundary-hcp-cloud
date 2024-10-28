@@ -1,15 +1,17 @@
 variable "aws_region" {
-    type        = string
-    sensitive   = false
+  type      = string
+  sensitive = false
+  ephemeral = true
 }
 
 variable "identity_token" {
-  type = string
+  type      = string
   ephemeral = true
 }
 
 variable "role_arn" {
-  type = string
+  type      = string
+  ephemeral = true
 }
 
 variable "default_tags" {
@@ -17,11 +19,13 @@ variable "default_tags" {
 }
 
 variable "environment" {
-  type = string
+  type      = string
+  ephemeral = true
 }
 
 variable "hcp_project_id" {
   type      = string
+  ephemeral = true
 }
 
 variable "hcp_token" {
@@ -30,5 +34,6 @@ variable "hcp_token" {
 }
 
 variable "hcp_workload_identity_provider" {
-  type = string
+  type      = string
+  ephemeral = true
 }
