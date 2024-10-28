@@ -12,7 +12,7 @@ component "hcp_cloud" {
   inputs = {
     environment             = var.environment
     hcp_project_id          = var.hcp_project_id
-    peer_vpc_id             = component.network.peer_vpc_id
+    peer_vpc_id             = component.network.vpc_id
     peer_account_id         = component.network.vpc_owner_id
     peer_vpc_region         = var.aws_region
     peer_destination_cidr   = component.network.vpc_cidr_block
