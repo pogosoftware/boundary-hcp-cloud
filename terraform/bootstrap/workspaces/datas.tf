@@ -124,7 +124,8 @@ data "aws_iam_policy_document" "network_apply" {
       "ec2:DescribeSubnets",
       "ec2:DescribeInternetGateways",
       "ec2:DescribeAddresses",
-      "ec2:DescribeNatGateways"
+      "ec2:DescribeNatGateways",
+      "ec2:DescribeAddressesAttribute"
     ]
 
     resources = ["*"]

@@ -93,7 +93,6 @@ module "network_workspace" {
   working_directory          = "./terraform/network"
   trigger_patterns           = ["./terraform/network/*.tf"]
   vcs_repos                  = var.vcs_repo
-  tags                       = ["aws", var.environment]
   allow_destroy_plan         = var.allow_destroy_plan
   auto_apply                 = var.auto_apply
   terraform_reqiured_version = var.terraform_version
@@ -126,7 +125,7 @@ module "hcp_cloud_workspace" {
   working_directory          = "./terraform/hcp-cloud"
   trigger_patterns           = ["./terraform/hcp-cloud/*.tf"]
   vcs_repos                  = var.vcs_repo
-  tags                       = ["aws", "hcp", "random", "vault", "tfe", var.environment]
+  tags                       = ["deps:network", "deps:tfc-agent"]
   allow_destroy_plan         = var.allow_destroy_plan
   auto_apply                 = var.auto_apply
   terraform_reqiured_version = var.terraform_version
@@ -162,7 +161,7 @@ module "vault_workspace" {
   working_directory          = "./terraform/vault"
   trigger_patterns           = ["./terraform/vault/*.tf"]
   vcs_repos                  = var.vcs_repo
-  tags                       = ["hcp", "vault", "utils", var.environment]
+  tags                       = ["deps:hcp-cloud"]
   allow_destroy_plan         = var.allow_destroy_plan
   auto_apply                 = var.auto_apply
   terraform_reqiured_version = var.terraform_version
@@ -189,7 +188,7 @@ module "boundary_workspace" {
   working_directory          = "./terraform/boundary"
   trigger_patterns           = ["./terraform/boundary/*.tf"]
   vcs_repos                  = var.vcs_repo
-  tags                       = ["aws", "boundary", "hcp", "tls", "vault", var.environment]
+  tags                       = ["deps:hcp-cloud", "deps:network", "deps:vault"]
   allow_destroy_plan         = var.allow_destroy_plan
   auto_apply                 = var.auto_apply
   terraform_reqiured_version = var.terraform_version
@@ -220,7 +219,7 @@ module "tfc_agent_workspace" {
   working_directory          = "./terraform/tfc-agent"
   trigger_patterns           = ["./terraform/tfc-agent/*.tf"]
   vcs_repos                  = var.vcs_repo
-  tags                       = ["sps", "aws", var.environment]
+  tags                       = ["deps:network"]
   allow_destroy_plan         = var.allow_destroy_plan
   auto_apply                 = var.auto_apply
   terraform_reqiured_version = var.terraform_version
