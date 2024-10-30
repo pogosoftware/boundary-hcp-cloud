@@ -50,7 +50,7 @@ module "postgres" {
   port     = var.database_port
 
   subnet_ids             = local.postgres_subnet_id
-  db_subnet_group_name   = "database"
+  db_subnet_group_name   = local.postgres_subnet_group_name
   vpc_security_group_ids = [local.postrgres_sg_id]
 
   tags = {
