@@ -8,8 +8,8 @@ on:
       - '**.tf'
 
 env:
-  TERRAFORM_DOCS_VERSION: v0.17.0
-  TFLINT_VERSION: v0.50.3
+  TERRAFORM_DOCS_VERSION: v0.19.0
+  TFLINT_VERSION: v0.53.0
 
 jobs:
   collectInputs:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Get root directories
         id: dirs
-        uses: clowdhaus/terraform-composite-actions/directories@v1.9.0
+        uses: clowdhaus/terraform-composite-actions/directories@v1.11.1
 
   preCommitMinVersions:
     name: Min TF pre-commit
@@ -45,7 +45,7 @@ jobs:
       - name: Pre-commit Terraform ${{ steps.minMax.outputs.minVersion }}
         # Run only validate pre-commit check on min version supported
         if: ${{ matrix.directory !=  '.' }}
-        uses: clowdhaus/terraform-composite-actions/pre-commit@v1.9.0
+        uses: clowdhaus/terraform-composite-actions/pre-commit@v1.11.1
         with:
           terraform-version: ${{ steps.minMax.outputs.minVersion }}
           tflint-version: ${{ env.TFLINT_VERSION }}
@@ -54,7 +54,7 @@ jobs:
       - name: Pre-commit Terraform ${{ steps.minMax.outputs.minVersion }}
         # Run only validate pre-commit check on min version supported
         if: ${{ matrix.directory ==  '.' }}
-        uses: clowdhaus/terraform-composite-actions/pre-commit@v1.9.0
+        uses: clowdhaus/terraform-composite-actions/pre-commit@v1.11.
         with:
           terraform-version: ${{ steps.minMax.outputs.minVersion }}
           tflint-version: ${{ env.TFLINT_VERSION }}
@@ -76,7 +76,7 @@ jobs:
         uses: clowdhaus/terraform-min-max@v1.3.0
 
       - name: Pre-commit Terraform ${{ steps.minMax.outputs.maxVersion }}
-        uses: clowdhaus/terraform-composite-actions/pre-commit@v1.9.0
+        uses: clowdhaus/terraform-composite-actions/pre-commit@v1.11.1
         with:
           terraform-version: ${{ steps.minMax.outputs.maxVersion }}
           tflint-version: ${{ env.TFLINT_VERSION }}
