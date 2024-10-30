@@ -124,7 +124,8 @@ module "network_workspace" {
   share_state_with_workspace_ids = [
     local.create_hcp_cloud_workspace ? module.hcp_cloud_workspace.id : null,
     local.create_boundary_workspace ? module.boundary_workspace.id : null,
-    local.create_tfc_agent_workspace ? module.tfc_agent_workspace.id : null
+    local.create_tfc_agent_workspace ? module.tfc_agent_workspace.id : null,
+    local.create_database_workspace ? module.database_workspace.id : null
   ]
 }
 
