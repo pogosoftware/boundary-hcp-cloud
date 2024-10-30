@@ -426,6 +426,7 @@ data "aws_iam_policy_document" "database_plan" {
     actions = [
       "ec2:DescribeSecurityGroups"
     ]
+    resources = ["*"]
   }
 }
 
@@ -435,5 +436,6 @@ data "aws_iam_policy_document" "database_apply" {
     actions = [
       "ec2:DescribeSecurityGroups"
     ]
+    resources = ["*"]
   }
 }
