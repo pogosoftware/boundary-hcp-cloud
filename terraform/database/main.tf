@@ -37,6 +37,7 @@ module "postgres" {
 
   engine            = var.database_engine
   engine_version    = var.database_engine_version
+  family            = var.database_family
   instance_class    = var.database_instance_class
   allocated_storage = var.database_allocated_storage
 

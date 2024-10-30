@@ -30,6 +30,11 @@ variable "database_engine" {
   type    = string
 }
 
+variable "database_family" {
+  default = "postgres16"
+  type    = string
+}
+
 variable "database_engine_version" {
   default = "16.4"
   type    = string
