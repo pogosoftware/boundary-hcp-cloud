@@ -19,6 +19,10 @@ output "workspaces" {
     boundary = {
       id   = try(module.boundary_workspace.id, null)
       name = try(module.boundary_workspace.name, null)
+    },
+    database = {
+      id   = try(module.database_workspace.id, null)
+      name = try(module.database_workspace.name, null)
     }
   }
 }

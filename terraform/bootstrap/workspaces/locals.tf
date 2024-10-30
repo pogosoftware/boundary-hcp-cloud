@@ -17,4 +17,7 @@ locals {
 
   create_tfc_agent_workspace = contains(["dev"], var.environment)
   tfc_agent_workspace_name   = format("%stfc-agent-%s", local.name_prefix, var.environment)
+  
+  create_database_workspace = contains(["dev"], var.environment)
+  database_workspace_name   = format("%sdatabase-%s", local.name_prefix, var.environment)
 }

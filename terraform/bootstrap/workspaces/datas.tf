@@ -419,3 +419,21 @@ data "aws_iam_policy_document" "tfc_agent_apply" {
     ]
   }
 }
+
+data "aws_iam_policy_document" "database_plan" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:DescribeSecurityGroups"
+    ]
+  }
+}
+
+data "aws_iam_policy_document" "database_apply" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:DescribeSecurityGroups"
+    ]
+  }
+}
