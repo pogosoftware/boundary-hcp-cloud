@@ -5,7 +5,7 @@ resource "random_string" "postgres_username" {
   length  = 16
   special = false
   upper   = false
-  number  = false
+  numeric = false
 }
 
 resource "random_password" "postgres_password" {
@@ -50,6 +50,7 @@ module "postgres" {
   port     = var.database_port
 
   subnet_ids             = local.postgres_subnet_id
+  db_subnet_group_name   = "database"
   vpc_security_group_ids = [local.postrgres_sg_id]
 
   tags = {
