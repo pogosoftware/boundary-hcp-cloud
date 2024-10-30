@@ -86,6 +86,9 @@ variable "network_security_groups" {
     },
     "tfc-agent" = {
       description = "This is SG for ECS Cluster for TFC Agents"
+    },
+    "database" = {
+      description = "This is SG for RDS"
     }
   }
   description = "The names of the security groups"
