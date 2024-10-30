@@ -1,3 +1,38 @@
+# Bootstrap
+
+[Create HCP Service Principal](https://developer.hashicorp.com/hcp/docs/hcp/admin/iam/service-principals)
+[Create TFE API Token](https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/users#tokens)
+
+Create `SafePass_Sentinel` project with `sps-bootstrap-dev` workspace. 
+type: 'Version Control Workflow'
+
+### Workspace Settings
+Terraform Working Directory: 'terraform/bootstrap'
+
+### VCS Triggers
+Only trigger runs when files in specified paths change: 'terraform/bootstrap/*.tf'
+
+### VCS branch
+default branch: 'develop'
+
+### Pull Requests
+Automatic speculative plans is checked
+
+### Remote state sharing
+Share with all workspaces in this organization is checked
+
+## Variables
+| Name | Value | Sensitive | Category |
+|------|---------|-------|--------|
+| hcp_project_id | `<HCP_PROJECT_ID>` | false | terraform |
+| AWS_REGION | `eu-central-1` |false | env |
+| TF_VAR_hcp_client_id | `<HCP_CLIENT_ID` | true | env |
+| TF_VAR_hcp_client_secret | `<HCP_CLIENT_SECRET` | true | env |
+| TF_VAR_tfe_token | `<TFE_TOKEN>` | true | env |
+| TFC_AWS_PROVIDER_AUTH | `true` |false | env |
+| TFC_AWS_RUN_ROLE_ARN | `arn:aws:iam::<AWS_ACCOUNT_ID>:role/sps-bootstrap` |false | env |
+| TFC_AWS_WORKLOAD_IDENTITY_AUDIENCE | `aws.workload.identity` | false | env |
+
 # Usage
 <!--- BEGIN_TF_DOCS --->
 ## Requirements

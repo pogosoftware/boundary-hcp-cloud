@@ -1,5 +1,7 @@
 locals {
-  name_prefix = var.name_prefix == null || var.name_prefix == "" ? "" : format("%s-", var.name_prefix)
+  name_prefix           = var.name_prefix == null || var.name_prefix == "" ? "" : format("%s-", var.name_prefix)
+  hcp_organization_name = data.hcp_organization.current.name
+  hcp_project_name      = data.hcp_project.current.name
 
   create_network_workspace = contains(["dev"], var.environment)
   network_workspace_name   = format("%snetwork-%s", local.name_prefix, var.environment)

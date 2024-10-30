@@ -1,4 +1,6 @@
 data "hcp_organization" "this" {}
+data "hcp_project" "current" {}
+data "aws_region" "current" {}
 
 ####################################################################################################
 ### REMOTE STATES

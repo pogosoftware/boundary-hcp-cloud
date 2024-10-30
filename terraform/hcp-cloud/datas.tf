@@ -1,8 +1,6 @@
 data "hcp_organization" "this" {}
-
-data "hcp_project" "this" {
-  project = var.hcp_project_id
-}
+data "hcp_project" "this" {}
+data "aws_region" "current" {}
 
 data "terraform_remote_state" "bootstrap" {
   backend = "remote"

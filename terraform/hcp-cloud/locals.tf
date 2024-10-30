@@ -14,7 +14,7 @@ locals {
   # aws peering
   peer_vpc_id             = data.terraform_remote_state.network.outputs.vpc_id
   peer_account_id         = data.terraform_remote_state.network.outputs.vpc_owner_id
-  peer_vpc_region         = var.aws_region
+  peer_vpc_region         = data.aws_region.current.name
   peer_destination_cidr   = data.terraform_remote_state.network.outputs.vpc_cidr_block
   peering_id              = format("%s-peering-%s", var.peering_id, var.environment)
   route_id                = format("%s-hvn-%s", var.route_id, var.environment)

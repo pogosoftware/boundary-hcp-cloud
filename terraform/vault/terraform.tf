@@ -1,22 +1,16 @@
 terraform {
-  required_version = "~> 1.7.0"
-
   required_providers {
     hcp = {
       source  = "hashicorp/hcp"
-      version = "~> 0.83"
+      version = "0.97.0"
     }
     vault = {
       source  = "hashicorp/vault"
-      version = "~> 4.0"
-    }
-    utils = {
-      source  = "cloudposse/utils"
-      version = "~> 1.18"
+      version = "4.4.0"
     }
     tls = {
       source  = "hashicorp/tls"
-      version = "~> 4.0"
+      version = "4.0.6"
     }
   }
 }
