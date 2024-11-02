@@ -58,4 +58,9 @@ variable "database_skip_final_snapshot" {
 variable "database_publicly_accessible" {
   default = true
   type    = bool
+
+}
+variable "database_manage_master_user_password" {
+  default = false
+  type    = bool
 }

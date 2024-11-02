@@ -42,8 +42,9 @@ module "postgres" {
   instance_class    = var.database_instance_class
   allocated_storage = var.database_allocated_storage
 
-  skip_final_snapshot = var.database_skip_final_snapshot
-  publicly_accessible = var.database_publicly_accessible
+  skip_final_snapshot         = var.database_skip_final_snapshot
+  publicly_accessible         = var.database_publicly_accessible
+  manage_master_user_password = var.database_manage_master_user_password
 
   username = local.postgres_username
   password = local.postgres_password
@@ -57,4 +58,20 @@ module "postgres" {
     InstanceGroup = "RDS_Postgres"
     Environment   = var.environment
   }
+}
+
+### CREATE ROLES
+resource "postgresql_role" "ro" {
+  depends_on = [ module.postgres ]
+
+  name    = "ro"
+  inherit = false
+}
+
+resource "postgresql_grant" "readonly_tables" {
+  database    = module.postgres.db_instance_name
+  role        = postgresql_role.ro.name
+  schema      = "public"
+  object_type = "table"
+  privileges  = ["SELECT"]
 }
