@@ -76,6 +76,15 @@ resource "aws_security_group_rule" "allow_8200_egress" {
   security_group_id = local.ecs_cluster_sg_id
 }
 
+resource "aws_security_group_rule" "allow_5432_egress" {
+  type                     = "egress"
+  to_port                  = 5432
+  protocol                 = "tcp"
+  from_port                = 5432
+  source_security_group_id = local.database_sg_id
+  security_group_id        = local.ecs_cluster_sg_id
+}
+
 ########################################################################################################################
 ## Creates an ECS Cluster
 ########################################################################################################################
