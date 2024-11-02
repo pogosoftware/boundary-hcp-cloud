@@ -11,13 +11,13 @@ resource "random_string" "postgres_username" {
 resource "random_password" "postgres_password" {
   length           = 32
   special          = true
-  override_special = "/@£$"
+  override_special = "/@\""
 }
 
 ####################################################################################################
 ### SETUP SECURITY GROUP
 ####################################################################################################
-resource "aws_security_group_rule" "ingress_allow_ssh" {
+resource "aws_security_group_rule" "ingress_allow_postgres_db" {
   type              = "ingress"
   to_port           = 5432
   protocol          = "tcp"
