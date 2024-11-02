@@ -61,17 +61,17 @@ module "postgres" {
 }
 
 ### CREATE ROLES
-resource "postgresql_role" "ro" {
-  depends_on = [ module.postgres ]
+# resource "postgresql_role" "ro" {
+#   depends_on = [ module.postgres ]
 
-  name    = "ro"
-  inherit = false
-}
+#   name    = "ro"
+#   inherit = false
+# }
 
-resource "postgresql_grant" "readonly_tables" {
-  database    = module.postgres.db_instance_name
-  role        = postgresql_role.ro.name
-  schema      = "public"
-  object_type = "table"
-  privileges  = ["SELECT"]
-}
+# resource "postgresql_grant" "readonly_tables" {
+#   database    = module.postgres.db_instance_name
+#   role        = postgresql_role.ro.name
+#   schema      = "public"
+#   object_type = "table"
+#   privileges  = ["SELECT"]
+# }
