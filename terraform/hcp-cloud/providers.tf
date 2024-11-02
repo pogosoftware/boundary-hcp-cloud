@@ -1,4 +1,4 @@
 provider "vault" {
-  address = hcp_vault_cluster.this.vault_public_endpoint_url
+  address = local.vault_address
   token   = hcp_vault_cluster_admin_token.this.token
 }
