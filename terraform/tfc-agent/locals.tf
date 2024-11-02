@@ -15,5 +15,6 @@ locals {
     hcp_cloud = data.terraform_remote_state.bootstrap.outputs.workspaces["hcp_cloud"].id
     vault     = data.terraform_remote_state.bootstrap.outputs.workspaces["vault"].id
     boundary  = data.terraform_remote_state.bootstrap.outputs.workspaces["boundary"].id
+    database  = data.terraform_remote_state.bootstrap.outputs.workspaces["database"].id
   }
 }
