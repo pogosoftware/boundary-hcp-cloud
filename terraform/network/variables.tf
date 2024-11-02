@@ -76,6 +76,12 @@ variable "network_manage_default_network_acl" {
   type        = bool
 }
 
+variable "network_manage_default_route_table" {
+  default     = false
+  description = "Determinate to manage default network route table or not"
+  type        = bool
+}
+
 variable "network_security_groups" {
   default = {
     "egress-worker" = {
