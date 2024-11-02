@@ -26,6 +26,7 @@ module "vpc" {
   manage_default_vpc            = var.network_manage_default_vpc
   manage_default_security_group = var.network_manage_default_security_group
   manage_default_network_acl    = var.network_manage_default_network_acl
+  manage_default_route_table    = var.network_manage_default_route_table 
 }
 
 resource "aws_security_group" "this" {
