@@ -175,7 +175,7 @@ module "vault_workspace" {
   working_directory          = "./terraform/vault"
   trigger_patterns           = ["./terraform/vault/*.tf"]
   vcs_repos                  = var.vcs_repo
-  tags                       = ["deps:hcp-cloud"]
+  tags                       = ["deps:hcp-cloud", "deps:database"]
   allow_destroy_plan         = var.allow_destroy_plan
   auto_apply                 = var.auto_apply
   terraform_reqiured_version = var.terraform_version
@@ -283,4 +283,8 @@ module "database_workspace" {
       category = "terraform"
     }
   }
+
+  share_state_with_workspace_ids = [
+    local.create_vault_workspace ? module.vault_workspace.id : null
+  ]
 }
