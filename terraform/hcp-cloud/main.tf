@@ -67,6 +67,14 @@ resource "aws_vpc_peering_connection_accepter" "peer" {
   }
 }
 
+resource "aws_vpc_peering_connection_options" "peering_dns" {
+  vpc_peering_connection_id = aws_vpc_peering_connection_accepter.peer.vpc_peering_connection_id
+
+  accepter {
+    allow_remote_vpc_dns_resolution = true
+  }
+}
+
 resource "aws_route" "private_to_hvn" {
   for_each = toset(local.private_route_table_ids)
 
