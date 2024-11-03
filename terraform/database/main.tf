@@ -10,8 +10,7 @@ resource "random_string" "postgres_username" {
 
 resource "random_password" "postgres_password" {
   length           = 32
-  special          = true
-  override_special = "/@\""
+  special          = false
 }
 
 ####################################################################################################
