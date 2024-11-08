@@ -9,8 +9,8 @@ resource "random_string" "postgres_username" {
 }
 
 resource "random_password" "postgres_password" {
-  length           = 32
-  special          = false
+  length  = 32
+  special = false
 }
 
 ####################################################################################################
@@ -63,13 +63,15 @@ module "postgres" {
 ### CREATE ROLES
 ####################################################################################################
 resource "postgresql_role" "ro" {
-  depends_on = [ module.postgres ]
+  depends_on = [module.postgres, aws_security_group_rule.ingress_allow_postgres_db]
 
   name    = "ro"
   inherit = false
 }
 
 resource "postgresql_grant" "readonly_tables" {
+  depends_on = [module.postgres, aws_security_group_rule.ingress_allow_postgres_db]
+
   database    = module.postgres.db_instance_name
   role        = postgresql_role.ro.name
   schema      = "public"
