@@ -50,7 +50,7 @@ resource "vault_ssh_secret_backend_role" "boundary_client" {
 
 resource "vault_token" "boundary" {
   no_default_policy = true
-  policies          = ["boundary-controller", "ssh"]
+  policies          = ["boundary-controller", "ssh", "sps-boundary-dev"]
   no_parent         = true
   period            = "24h"
   renewable         = true
