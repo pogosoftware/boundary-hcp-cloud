@@ -57,3 +57,7 @@ path "database/config/postgresql" {
 path "database/roles/readonly" {
   capabilities = ["create", "update", "read", "delete"]
 }
+
+path "database/roles/readonly/*" {
+  capabilities = ["read", "update", "delete"]
+}
