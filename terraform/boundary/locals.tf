@@ -25,4 +25,7 @@ locals {
   ssh_credential_library = format("vault-ssh-%s", var.environment)
 
   ec2_egress_worker_name = format("%s-%s", var.boundary_ec2_workers_egress_name, var.environment)
+
+  database_address = data.terraform_remote_state.database.outputs.endpoint
+  database_port    = data.terraform_remote_state.database.outputs.port
 }
