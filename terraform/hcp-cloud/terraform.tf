@@ -6,11 +6,11 @@ terraform {
     }
     hcp = {
       source  = "hashicorp/hcp"
-      version = "0.97.0"
+      version = "0.98.1"
     }
     tfe = {
       source  = "hashicorp/tfe"
-      version = "0.59.0"
+      version = "0.60.0"
     }
     random = {
       source  = "hashicorp/random"
