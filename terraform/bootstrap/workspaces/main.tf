@@ -285,6 +285,7 @@ module "database_workspace" {
   }
 
   share_state_with_workspace_ids = [
-    local.create_vault_workspace ? module.vault_workspace.id : null
+    local.create_vault_workspace ? module.vault_workspace.id : null,
+    local.create_boundary_workspace ? module.boundary_workspace.id : null
   ]
 }
