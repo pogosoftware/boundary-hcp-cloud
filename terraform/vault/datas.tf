@@ -21,3 +21,14 @@ data "terraform_remote_state" "hcp_cloud" {
     }
   }
 }
+
+data "terraform_remote_state" "database" {
+  backend = "remote"
+
+  config = {
+    organization = data.hcp_organization.this.name
+    workspaces = {
+      name = data.terraform_remote_state.bootstrap.outputs.workspaces["database"].name
+    }
+  }
+}

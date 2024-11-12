@@ -54,10 +54,29 @@ data "aws_iam_policy_document" "network_plan" {
       "ec2:DescribeSubnets",
       "ec2:DescribeAddresses",
       "ec2:DescribeNatGateways",
-      "ec2:DescribeAddressesAttribute"
+      "ec2:DescribeAddressesAttribute",
+      "ec2:DescribeVpcs",
+      "ec2:DescribeSubnets",
+      "ec2:DescribeSecurityGroups",
+      "ec2:DescribeRouteTables",
+      "ec2:DescribeNatGateways",
+      "ec2:DescribeInternetGateways",
+      "ec2:DescribeAddressesAttribute",
+      "ec2:DescribeAddresses",
+      "ec2:DescribeAvailabilityZones"
     ]
 
     resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "rds:DescribeDBSubnetGroups",
+      "rds:ListTagsForResource"
+    ]
+
+    resources = ["arn:aws:rds:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:subgrp:*"]
   }
 }
 
@@ -65,31 +84,31 @@ data "aws_iam_policy_document" "network_apply" {
   statement {
     effect = "Allow"
     actions = [
+      "ec2:RevokeSecurityGroupEgress",
+      "ec2:ReleaseAddress",
+      "ec2:ModifyVpcAttribute",
+      "ec2:DisassociateRouteTable",
+      "ec2:DetachInternetGateway",
+      "ec2:DescribeVpcAttribute",
+      "ec2:DeleteVpc",
+      "ec2:DeleteSubnet",
+      "ec2:DeleteSecurityGroup",
+      "ec2:DeleteRouteTable",
+      "ec2:DeleteRoute",
+      "ec2:DeleteNatGateway",
+      "ec2:DeleteInternetGateway",
       "ec2:CreateVpc",
       "ec2:CreateTags",
-      "ec2:DeleteVpc",
-      "ec2:ModifyVpcAttribute",
-      "ec2:DescribeVpcAttribute",
       "ec2:CreateSubnet",
-      "ec2:CreateRouteTable",
       "ec2:CreateSecurityGroup",
-      "ec2:CreateInternetGateway",
-      "ec2:CreateTags",
-      "ec2:AttachInternetGateway",
-      "ec2:DeleteInternetGateway",
-      "ec2:DetachInternetGateway",
-      "ec2:DeleteSecurityGroup",
-      "ec2:DeleteSubnet",
-      "ec2:AllocateAddress",
-      "ec2:AssociateRouteTable",
-      "ec2:RevokeSecurityGroupEgress",
+      "ec2:CreateRouteTable",
       "ec2:CreateRoute",
-      "ec2:ReleaseAddress",
       "ec2:CreateNatGateway",
-      "ec2:DeleteNatGateway",
-      "ec2:DisassociateRouteTable",
-      "ec2:DeleteRoute",
-      "ec2:DeleteRouteTable"
+      "ec2:CreateInternetGateway",
+      "ec2:AttachInternetGateway",
+      "ec2:AssociateRouteTable",
+      "ec2:AllocateAddress",
+      "ec2:ReplaceRoute"
     ]
 
     resources = [
@@ -118,17 +137,31 @@ data "aws_iam_policy_document" "network_apply" {
     effect = "Allow"
     actions = [
       "ec2:DescribeVpcs",
-      "ec2:DescribeRouteTables",
-      "ec2:DescribeSecurityGroups",
-      "ec2:DescribeNetworkInterfaces",
       "ec2:DescribeSubnets",
+      "ec2:DescribeSecurityGroups",
+      "ec2:DescribeRouteTables",
+      "ec2:DescribeNetworkInterfaces",
+      "ec2:DescribeNatGateways",
       "ec2:DescribeInternetGateways",
       "ec2:DescribeAddresses",
-      "ec2:DescribeNatGateways",
-      "ec2:DescribeAddressesAttribute"
+      "ec2:DescribeAddressesAttribute",
+      "ec2:DisassociateRouteTable"
     ]
 
     resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "rds:CreateDBSubnetGroup",
+      "rds:AddTagsToResource",
+      "rds:DescribeDBSubnetGroups",
+      "rds:DeleteDBSubnetGroup",
+      "rds:ListTagsForResource"
+    ]
+
+    resources = ["arn:aws:rds:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:subgrp:*"]
   }
 }
 
@@ -156,8 +189,9 @@ data "aws_iam_policy_document" "hcp_cloud_apply" {
   statement {
     effect = "Allow"
     actions = [
+      "ec2:CreateTags",
       "ec2:AcceptVpcPeeringConnection",
-      "ec2:CreateTags"
+      "ec2:ModifyVpcPeeringConnectionOptions"
     ]
     resources = [
       "arn:aws:ec2:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:vpc-peering-connection/*",
@@ -418,4 +452,79 @@ data "aws_iam_policy_document" "tfc_agent_apply" {
       "*",
     ]
   }
+}
+
+data "aws_iam_policy_document" "database_plan" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "rds:DescribeDBParameters",
+      "rds:DescribeDBParameterGroups",
+      "rds:ListTagsForResource",
+      "rds:DescribeDBInstances"
+    ]
+    resources = [
+      "arn:aws:rds:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:pg:safepass-sentinel-dev-*",
+      "arn:aws:rds:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:db:*"
+    ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:DescribeSecurityGroupRules",
+      "ec2:DescribeSecurityGroups"
+    ]
+    resources = ["*"]
+  }
+}
+
+data "aws_iam_policy_document" "database_apply" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "rds:CreateDBParameterGroup",
+      "rds:AddTagsToResource",
+      "rds:DescribeDBParameterGroups",
+      "rds:DescribeDBParameters",
+      "rds:ListTagsForResource",
+      "rds:CreateDBInstance",
+      "rds:DescribeDBInstances",
+      "rds:DeleteDBInstance",
+      "rds:DeleteDBParameterGroup"
+    ]
+    resources = [
+      "arn:aws:rds:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:db:*",
+      "arn:aws:rds:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:pg:*",
+      "arn:aws:rds:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:subgrp:*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:AuthorizeSecurityGroupIngress",
+      "ec2:RevokeSecurityGroupIngress"
+    ]
+    resources = [
+      "arn:aws:ec2:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:security-group/*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:DescribeSecurityGroups",
+      "kms:ReEncrypt*",
+      "kms:ListKeys",
+      "kms:ListAliases",
+      "kms:GenerateDataKey*",
+      "kms:Encrypt",
+      "kms:DescribeKey",
+      "kms:Decrypt"
+    ]
+    resources = [
+      "*"
+    ]
+  }
+
 }

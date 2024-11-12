@@ -34,3 +34,4 @@ override.tf.json
 terraform.rc
 
 backup/
+terraform/bootstrap/README.md

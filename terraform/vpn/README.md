@@ -1,31 +1,25 @@
-<!--- BEGIN_TF_DOCS --->
-## Requirements
-
-| Name | Version |
-|------|---------|
-| terraform | ~> 1.7 |
-| aws | 5.66.0 |
-| hcp | ~> 0.83 |
-| tls | 4.0.5 |
-
+<!-- BEGIN_TF_DOCS -->
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | 5.66.0 |
-| hcp | ~> 0.83 |
-| terraform | n/a |
-| tls | 4.0.5 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.75.1 |
+| <a name="provider_hcp"></a> [hcp](#provider\_hcp) | 0.99.0 |
+| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | 4.0.6 |
+
+## Modules
+
+No modules.
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| hcp\_network\_workspace\_name | The name of network TFC workspace | `string` | n/a | yes |
-| hcp\_project\_id | The UUID of HCP project | `string` | n/a | yes |
+| <a name="input_hcp_network_workspace_name"></a> [hcp\_network\_workspace\_name](#input\_hcp\_network\_workspace\_name) | The name of network TFC workspace | `string` | n/a | yes |
+| <a name="input_hcp_project_id"></a> [hcp\_project\_id](#input\_hcp\_project\_id) | The UUID of HCP project | `string` | n/a | yes |
 
 ## Outputs
 
-No output.
-
-<!--- END_TF_DOCS --->
+No outputs.
+<!-- END_TF_DOCS -->

@@ -127,6 +127,19 @@ resource "boundary_credential_library_vault_ssh_certificate" "ssh" {
   }
 }
 
+resource "boundary_credential_library_vault" "database" {
+  name                = "database"
+  description         = "Credentials to the database"
+  credential_store_id = boundary_credential_store_vault.ssh.id
+  path                = "database/creds/readonly"
+  http_method         = "GET"
+  credential_type     = "username_password"
+  credential_mapping_overrides = {
+    password_attribute = "password"
+    username_attribute = "username"
+  }
+}
+
 ####################################################################################################
 ### Admin user
 ####################################################################################################
@@ -217,6 +230,20 @@ resource "boundary_target" "ec2_egress_workers" {
     boundary_credential_library_vault_ssh_certificate.ssh.id
   ]
   egress_worker_filter = "\"egress\" in \"/tags/worker\""
+}
+
+resource "boundary_target" "database" {
+  name                     = format("database - %s", var.environment)
+  type                     = "tcp"
+  default_port             = local.database_port
+  scope_id                 = boundary_scope.project.id
+  address                  = local.database_address
+  session_max_seconds      = 3600
+  egress_worker_filter     = "\"egress\" in \"/tags/worker\""
+  session_connection_limit = 2
+  brokered_credential_source_ids = [
+    boundary_credential_library_vault.database.id
+  ]
 }
 
 resource "boundary_target" "vault" {

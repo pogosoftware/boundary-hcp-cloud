@@ -1,4 +1,5 @@
 locals {
+  vault_address = var.vault_public_endpoint == true ? hcp_vault_cluster.this.vault_public_endpoint_url : hcp_vault_cluster.this.vault_private_endpoint_url
   vault_jwt_roles = {
     vault    = data.terraform_remote_state.bootstrap.outputs.workspaces["vault"]
     boundary = data.terraform_remote_state.bootstrap.outputs.workspaces["boundary"]

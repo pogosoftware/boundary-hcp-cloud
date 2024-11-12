@@ -5,3 +5,7 @@ path "auth/token/create" {
 path "apps/data/infra/boundary" {
   capabilities = ["read"]
 }
+
+path "database/creds/readonly" {
+  capabilities = ["create", "update", "read", "delete"]
+}

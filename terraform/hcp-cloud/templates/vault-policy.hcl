@@ -45,3 +45,19 @@ path "auth/token/lookup-accessor" {
 path "auth/token/revoke-accessor" {
   capabilities = ["create", "update"]
 }
+
+path "sys/mounts/database" {
+  capabilities = ["create", "update", "read", "delete"]
+}
+
+path "database/config/postgresql" {
+  capabilities = ["create", "update", "read", "delete"]
+}
+
+path "database/roles/readonly" {
+  capabilities = ["create", "update", "read", "delete"]
+}
+
+path "database/roles/readonly/*" {
+  capabilities = ["read", "update", "delete"]
+}

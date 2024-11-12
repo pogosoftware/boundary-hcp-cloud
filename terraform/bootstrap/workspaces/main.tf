@@ -53,6 +53,19 @@ module "tfc_agent_role" {
   tfe_workspace = local.tfc_agent_workspace_name
 }
 
+module "database_role" {
+  source  = "pogosoftware/tfe/tfe//modules/iam-role"
+  version = "3.0.3"
+
+  create_iam_role        = local.create_database_workspace
+  name_preffix           = local.database_workspace_name
+  plan_role_policy_json  = data.aws_iam_policy_document.database_plan.json
+  apply_role_policy_json = data.aws_iam_policy_document.database_apply.json
+
+  tfe_project   = local.hcp_project_name
+  tfe_workspace = local.database_workspace_name
+}
+
 ####################################################################################################
 ### IAM USERS
 ####################################################################################################
@@ -111,7 +124,8 @@ module "network_workspace" {
   share_state_with_workspace_ids = [
     local.create_hcp_cloud_workspace ? module.hcp_cloud_workspace.id : null,
     local.create_boundary_workspace ? module.boundary_workspace.id : null,
-    local.create_tfc_agent_workspace ? module.tfc_agent_workspace.id : null
+    local.create_tfc_agent_workspace ? module.tfc_agent_workspace.id : null,
+    local.create_database_workspace ? module.database_workspace.id : null
   ]
 }
 
@@ -161,7 +175,7 @@ module "vault_workspace" {
   working_directory          = "./terraform/vault"
   trigger_patterns           = ["./terraform/vault/*.tf"]
   vcs_repos                  = var.vcs_repo
-  tags                       = ["deps:hcp-cloud"]
+  tags                       = ["deps:hcp-cloud", "deps:database"]
   allow_destroy_plan         = var.allow_destroy_plan
   auto_apply                 = var.auto_apply
   terraform_reqiured_version = var.terraform_version
@@ -238,4 +252,40 @@ module "tfc_agent_workspace" {
       category = "terraform"
     }
   }
+}
+
+module "database_workspace" {
+  source  = "pogosoftware/tfe/tfe//modules/workspace"
+  version = "3.0.3"
+
+  create_workspace           = local.create_database_workspace
+  name                       = local.database_workspace_name
+  project_id                 = data.tfe_project.this.id
+  working_directory          = "./terraform/database"
+  trigger_patterns           = ["./terraform/database/*.tf"]
+  vcs_repos                  = var.vcs_repo
+  tags                       = ["deps:network"]
+  allow_destroy_plan         = var.allow_destroy_plan
+  auto_apply                 = var.auto_apply
+  terraform_reqiured_version = var.terraform_version
+
+  workspace_variables = {
+    TFC_AWS_PLAN_ROLE_ARN = {
+      value    = module.database_role.plan_role_arn
+      category = "env"
+    },
+    TFC_AWS_APPLY_ROLE_ARN = {
+      value    = module.database_role.apply_role_arn
+      category = "env"
+    },
+    bootstrap_workspace_name = {
+      value    = terraform.workspace
+      category = "terraform"
+    }
+  }
+
+  share_state_with_workspace_ids = [
+    local.create_vault_workspace ? module.vault_workspace.id : null,
+    local.create_boundary_workspace ? module.boundary_workspace.id : null
+  ]
 }

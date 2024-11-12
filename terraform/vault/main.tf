@@ -50,7 +50,7 @@ resource "vault_ssh_secret_backend_role" "boundary_client" {
 
 resource "vault_token" "boundary" {
   no_default_policy = true
-  policies          = ["boundary-controller", "ssh"]
+  policies          = ["boundary-controller", "ssh", "sps-boundary-dev"]
   no_parent         = true
   period            = "24h"
   renewable         = true
@@ -84,4 +84,29 @@ resource "vault_kv_secret_v2" "boundary" {
       tf_module = "hcp-cloud"
     }
   }
+}
+
+### DATABASE SECRET ENGINE
+resource "vault_mount" "postgresql" {
+  path = "database"
+  type = "database"
+}
+
+resource "vault_database_secret_backend_connection" "postgresql" {
+  backend       = vault_mount.postgresql.path
+  name          = "postgresql"
+  allowed_roles = ["readonly"]
+
+  postgresql {
+    connection_url = "postgresql://{{username}}:{{password}}@${local.database_endpoint}:${local.database_port}/${local.database_db_name}?sslmode=require"
+    username       = local.database_username
+    password       = local.database_password
+  }
+}
+
+resource "vault_database_secret_backend_role" "readonly" {
+  backend             = vault_mount.postgresql.path
+  name                = "readonly"
+  db_name             = vault_database_secret_backend_connection.postgresql.name
+  creation_statements = ["CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}' INHERIT; GRANT ro TO \"{{name}}\";"]
 }

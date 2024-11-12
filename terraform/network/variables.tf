@@ -10,24 +10,6 @@ variable "network_vpc_cidr" {
   type        = string
 }
 
-variable "network_vpc_azs" {
-  default     = ["eu-central-1a"]
-  description = "The name of azs"
-  type        = list(string)
-}
-
-variable "network_vpc_private_subnets" {
-  default     = ["10.0.1.0/24"]
-  description = "The list of private subnets"
-  type        = list(string)
-}
-
-variable "network_vpc_public_subnets" {
-  default     = ["10.0.101.0/24"]
-  description = "The list of public subnets"
-  type        = list(string)
-}
-
 variable "network_enable_nat_gateway" {
   default     = true
   description = "Determinates enable nat gateway or not"
@@ -76,6 +58,12 @@ variable "network_manage_default_network_acl" {
   type        = bool
 }
 
+variable "network_manage_default_route_table" {
+  default     = false
+  description = "Determinate to manage default network route table or not"
+  type        = bool
+}
+
 variable "network_security_groups" {
   default = {
     "egress-worker" = {
@@ -86,6 +74,9 @@ variable "network_security_groups" {
     },
     "tfc-agent" = {
       description = "This is SG for ECS Cluster for TFC Agents"
+    },
+    "database" = {
+      description = "This is SG for RDS"
     }
   }
   description = "The names of the security groups"

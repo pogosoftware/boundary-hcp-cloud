@@ -18,7 +18,7 @@ variable "name_prefix" {
 variable "vcs_repo" {
   default = {
     identifier = "pogosoftware/safepass-sentinel"
-    branch     = "develop"
+    branch     = "feature/rds"
   }
   description = "The repository where modules are"
   type = object({
