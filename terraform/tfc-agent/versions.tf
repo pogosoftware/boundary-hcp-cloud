@@ -6,7 +6,7 @@ terraform {
     }
     hcp = {
       source  = "hashicorp/hcp"
-      version = "0.98.1"
+      version = "0.99.0"
     }
     tfe = {
       source  = "hashicorp/tfe"
