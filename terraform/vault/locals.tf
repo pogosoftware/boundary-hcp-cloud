@@ -7,8 +7,8 @@ locals {
 
   # database
   database_endpoint = data.terraform_remote_state.database.outputs.endpoint
-  database_port = data.terraform_remote_state.database.outputs.port
-  database_db_name = data.terraform_remote_state.database.outputs.db_name
+  database_port     = data.terraform_remote_state.database.outputs.port
+  database_db_name  = data.terraform_remote_state.database.outputs.db_name
   database_username = data.terraform_remote_state.database.outputs.username
   database_password = data.terraform_remote_state.database.outputs.password
 }

@@ -52,3 +52,23 @@ updates:
       prefix: "feat: Terraform "
     reviewers:
       - "@pogosoftware/devops"
+  - package-ecosystem: "terraform"
+    directory: "/terraform/database"
+    open-pull-requests-limit: 5
+    schedule:
+      interval: "weekly"
+    commit-message:
+      # Prefix all commit messages with "feat: "
+      prefix: "feat: Terraform "
+    reviewers:
+      - "@pogosoftware/devops"
+  - package-ecosystem: "terraform"
+    directory: "/terraform/vpn"
+    open-pull-requests-limit: 5
+    schedule:
+      interval: "weekly"
+    commit-message:
+      # Prefix all commit messages with "feat: "
+      prefix: "feat: Terraform "
+    reviewers:
+      - "@pogosoftware/devops"

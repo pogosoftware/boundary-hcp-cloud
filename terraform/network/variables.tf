@@ -10,24 +10,6 @@ variable "network_vpc_cidr" {
   type        = string
 }
 
-variable "network_vpc_azs" {
-  default     = ["eu-central-1a"]
-  description = "The name of azs"
-  type        = list(string)
-}
-
-variable "network_vpc_private_subnets" {
-  default     = ["10.0.1.0/24"]
-  description = "The list of private subnets"
-  type        = list(string)
-}
-
-variable "network_vpc_public_subnets" {
-  default     = ["10.0.101.0/24"]
-  description = "The list of public subnets"
-  type        = list(string)
-}
-
 variable "network_enable_nat_gateway" {
   default     = true
   description = "Determinates enable nat gateway or not"
