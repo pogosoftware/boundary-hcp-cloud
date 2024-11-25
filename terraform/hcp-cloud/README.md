@@ -4,7 +4,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 5.77.0 |
-| <a name="provider_hcp"></a> [hcp](#provider\_hcp) | 0.98.1 |
+| <a name="provider_hcp"></a> [hcp](#provider\_hcp) | 0.99.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.6.3 |
 | <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
 | <a name="provider_tfe"></a> [tfe](#provider\_tfe) | 0.60.0 |
@@ -14,7 +14,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vault_credentials_variable_set"></a> [vault\_credentials\_variable\_set](#module\_vault\_credentials\_variable\_set) | pogosoftware/tfe/tfe//modules/variable-set | 3.2.0 |
+| <a name="module_vault_credentials_variable_set"></a> [vault\_credentials\_variable\_set](#module\_vault\_credentials\_variable\_set) | pogosoftware/tfe/tfe//modules/variable-set | 4.0.1 |
 
 ## Inputs
 

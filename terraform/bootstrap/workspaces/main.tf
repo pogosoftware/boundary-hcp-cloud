@@ -3,7 +3,7 @@
 ####################################################################################################
 module "network_role" {
   source  = "pogosoftware/tfe/tfe//modules/iam-role"
-  version = "3.0.3"
+  version = "4.0.1"
 
   create_iam_role        = local.create_network_workspace
   name_preffix           = local.network_workspace_name
@@ -16,7 +16,7 @@ module "network_role" {
 
 module "hcp_cloud_role" {
   source  = "pogosoftware/tfe/tfe//modules/iam-role"
-  version = "3.0.3"
+  version = "4.0.1"
 
   create_iam_role        = local.create_hcp_cloud_workspace
   name_preffix           = local.hcp_cloud_workspace_name
@@ -29,7 +29,7 @@ module "hcp_cloud_role" {
 
 module "boundary_role" {
   source  = "pogosoftware/tfe/tfe//modules/iam-role"
-  version = "3.0.3"
+  version = "4.0.1"
 
   create_iam_role        = local.create_boundary_workspace
   name_preffix           = local.boundary_workspace_name
@@ -42,7 +42,7 @@ module "boundary_role" {
 
 module "tfc_agent_role" {
   source  = "pogosoftware/tfe/tfe//modules/iam-role"
-  version = "3.0.3"
+  version = "4.0.1"
 
   create_iam_role        = local.create_tfc_agent_workspace
   name_preffix           = local.tfc_agent_workspace_name
@@ -55,7 +55,7 @@ module "tfc_agent_role" {
 
 module "database_role" {
   source  = "pogosoftware/tfe/tfe//modules/iam-role"
-  version = "3.0.3"
+  version = "4.0.1"
 
   create_iam_role        = local.create_database_workspace
   name_preffix           = local.database_workspace_name
@@ -98,7 +98,7 @@ module "boundary_user" {
 ####################################################################################################
 module "network_workspace" {
   source  = "pogosoftware/tfe/tfe//modules/workspace"
-  version = "3.0.3"
+  version = "4.0.1"
 
   create_workspace           = local.create_network_workspace
   name                       = local.network_workspace_name
@@ -131,7 +131,7 @@ module "network_workspace" {
 
 module "hcp_cloud_workspace" {
   source  = "pogosoftware/tfe/tfe//modules/workspace"
-  version = "3.0.3"
+  version = "4.0.1"
 
   create_workspace           = local.create_hcp_cloud_workspace
   name                       = local.hcp_cloud_workspace_name
@@ -167,7 +167,7 @@ module "hcp_cloud_workspace" {
 
 module "vault_workspace" {
   source  = "pogosoftware/tfe/tfe//modules/workspace"
-  version = "3.0.3"
+  version = "4.0.1"
 
   create_workspace           = local.create_vault_workspace
   name                       = local.vault_workspace_name
@@ -194,7 +194,7 @@ module "vault_workspace" {
 
 module "boundary_workspace" {
   source  = "pogosoftware/tfe/tfe//modules/workspace"
-  version = "3.0.3"
+  version = "4.0.1"
 
   create_workspace           = local.create_boundary_workspace
   name                       = local.boundary_workspace_name
@@ -225,7 +225,7 @@ module "boundary_workspace" {
 
 module "tfc_agent_workspace" {
   source  = "pogosoftware/tfe/tfe//modules/workspace"
-  version = "3.0.3"
+  version = "4.0.1"
 
   create_workspace           = local.create_tfc_agent_workspace
   name                       = local.tfc_agent_workspace_name
@@ -256,7 +256,7 @@ module "tfc_agent_workspace" {
 
 module "database_workspace" {
   source  = "pogosoftware/tfe/tfe//modules/workspace"
-  version = "3.0.3"
+  version = "4.0.1"
 
   create_workspace           = local.create_database_workspace
   name                       = local.database_workspace_name
