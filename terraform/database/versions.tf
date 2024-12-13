@@ -2,11 +2,11 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "5.77.0"
+      version = "5.78.0"
     }
     hcp = {
       source  = "hashicorp/hcp"
-      version = "0.99.0"
+      version = "0.100.0"
     }
     random = {
       source  = "hashicorp/random"
